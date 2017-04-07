@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pysco68.Owin.Authentication.Ntlm</name>
+    </assembly>
+    <members>
+        <member name="T:Pysco68.Owin.Authentication.Ntlm.Security.StateCache">
+            <summary>
+            An in-memory cache for the login handshakes
+            </summary>
+        </member>
+        <member name="P:Pysco68.Owin.Authentication.Ntlm.Security.StateCache.ExpirationTime">
+            <summary>
+            Expiration time of a login attempt state in minutes,
+            defaults to 2
+            </summary>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Security.StateCache.#ctor(System.String)">
+            <summary>
+            Create a state cache
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Security.StateCache.TryGet(System.String,Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState@)">
+            <summary>
+            Try to get a state by its key
+            </summary>
+            <param name="key"></param>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Security.StateCache.Add(System.String,Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState)">
+            <summary>
+            Add a new state to the cache
+            </summary>
+            <param name="key"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Security.StateCache.Add(System.String,Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState,System.Runtime.Caching.CacheItemPolicy)">
+            <summary>
+            Add a new state to the cache and set a custom cache item policy
+            </summary>
+            <param name="key"></param>
+            <param name="state"></param>
+            <param name="policy"></param>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Security.StateCache.TryRemove(System.String)">
+            <summary>
+            Remove a key
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Security.StateCache.GetCacheItemPolicy(System.Int32)">
+            <summary>
+            Gets a cache item policy.
+            </summary>
+            <param name="minutes">Absolute expiration time in x minutes</param>
+            <returns></returns>
+        </member>
+        <member name="T:Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState">
+            <summary>
+            A windows authentication session
+            </summary>
+        </member>
+        <member name="F:Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState.Credentials">
+            <summary>
+            Credentials used to validate NTLM hashes
+            </summary>
+        </member>
+        <member name="F:Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState.Context">
+            <summary>
+            Context will be used to validate HTLM hashes
+            </summary>
+        </member>
+        <member name="F:Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState.AuthenticationProperties">
+            <summary>
+            The authentication properties we extract from the authentication challenge
+            received from application layer
+            </summary>
+        </member>
+        <member name="P:Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState.WindowsIdentity">
+            <summary>
+            The matching windows identity
+            </summary>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState.TryAcquireServerChallenge(System.Byte[]@)">
+            <summary>
+            Try to acquire the server challenge for this state
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Security.HandshakeState.IsClientResponseValid(System.Byte[])">
+            <summary>
+            Validate the client response and fill the indentity of the token
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Native.Interop.AcquireCredentialsHandle(System.String,System.String,System.Int32,System.IntPtr,System.IntPtr,System.Int32,System.IntPtr,Pysco68.Owin.Authentication.Ntlm.Native.SecurityHandle@,Pysco68.Owin.Authentication.Ntlm.Native.SecurityInteger@)">
+            <summary>
+            The AcquireCredentialsHandle function acquires a handle to preexisting credentials of a security principal.
+            </summary>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Native.Interop.AcceptSecurityContext(Pysco68.Owin.Authentication.Ntlm.Native.SecurityHandle@,System.IntPtr,Pysco68.Owin.Authentication.Ntlm.Native.SecurityBufferDesciption@,System.UInt32,System.UInt32,Pysco68.Owin.Authentication.Ntlm.Native.SecurityHandle@,Pysco68.Owin.Authentication.Ntlm.Native.SecurityBufferDesciption@,System.UInt32@,Pysco68.Owin.Authentication.Ntlm.Native.SecurityInteger@)">
+            <summary>
+            The AcceptSecurityContext (General) function enables the server component of a 
+            transport application to establish a security context between the server and a remote client.
+            </summary>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Native.Interop.AcceptSecurityContext(Pysco68.Owin.Authentication.Ntlm.Native.SecurityHandle@,Pysco68.Owin.Authentication.Ntlm.Native.SecurityHandle@,Pysco68.Owin.Authentication.Ntlm.Native.SecurityBufferDesciption@,System.UInt32,System.UInt32,Pysco68.Owin.Authentication.Ntlm.Native.SecurityHandle@,Pysco68.Owin.Authentication.Ntlm.Native.SecurityBufferDesciption@,System.UInt32@,Pysco68.Owin.Authentication.Ntlm.Native.SecurityInteger@)">
+            <summary>
+            The AcceptSecurityContext (General) function enables the server component of a 
+            transport application to establish a security context between the server and a remote client.
+            </summary>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Native.Interop.QuerySecurityContextToken(Pysco68.Owin.Authentication.Ntlm.Native.SecurityHandle@,System.IntPtr@)">
+            <summary>
+            Obtains the access token for a client security context and uses it directly.
+            </summary>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Native.Interop.CloseHandle(System.IntPtr)">
+            <summary>
+            Close handle for proper cleanup
+            </summary>
+            <param name="hObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.Native.SecurityHandle.Reset">
+            <summary>
+            Resets all internal pointers to default value
+            </summary>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationHandler.#ctor(Microsoft.Owin.Logging.ILogger)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationHandler.AuthenticateCoreAsync">
+            <summary>
+            Authenticate the request
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationHandler.ApplyResponseChallengeAsync">
+            <summary>
+            Apply the first authorization step
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationHandler.InvokeAsync">
+            <summary>
+            This is always invoked on each request. For passive middleware, only do anything if this is
+            for our callback path when the user is redirected back from the authentication provider.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationExtensions.UseNtlmAuthentication(Owin.IAppBuilder,Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions)">
+            <summary>
+            Enable using Ntlm authentication
+            </summary>
+            <param name="app"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationExtensions.IsNtlmAuthenticationCallback(Microsoft.Owin.IOwinRequest)">
+            <summary>
+            Check if the present request is actually a callpack path for the NTLM authentication middleware
+            </summary>
+            <remarks>
+            If you didn't use the default redirection path in the configuration of the NTLM authentication 
+            middleware you must supply the same path to this function. See overloads of this method.
+            </remarks>
+            <param name="request"></param>
+            <returns>True if the request path is the callback path, false otherwise</returns>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationExtensions.IsNtlmAuthenticationCallback(Microsoft.Owin.IOwinRequest,Microsoft.Owin.PathString)">
+            <summary>
+            Check if the present request is actually a callpack path for the NTLM authentication middleware
+            </summary>
+            <param name="request"></param>
+            <param name="redirectPath">The path to check against</param>
+            <returns>True if the request path matches the callback path, false otherwise</returns>
+        </member>
+        <member name="F:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions.DefaultRedirectPath">
+            <summary>
+            The default redirection path used by the NTLM authentication middleware of
+            the full roundtrip / handshakes
+            </summary>
+        </member>
+        <member name="P:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions.StateDataFormat">
+            <summary>
+            Secured store for state data
+            </summary>
+        </member>
+        <member name="P:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions.LoginStateCache">
+            <summary>
+            Store states for the login attempts
+            </summary>
+        </member>
+        <member name="P:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions.LoginStateExpirationTime">
+            <summary>
+            Number of minutes a login can take (defaults to 2 minutes)
+            </summary>
+        </member>
+        <member name="P:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions.SignInAsAuthenticationType">
+            <summary>
+            The authentication type used for sign in
+            </summary>
+        </member>
+        <member name="P:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions.CallbackPath">
+            <summary>
+            The callback string used for the NTLM authentication roundtrips, 
+            defaults to "/authentication/ntlm-signin"
+            </summary>
+        </member>
+        <member name="P:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions.Filter">
+            <summary>
+            If this is set, it must return true to authenticate the user.
+            It can be used to filter out users according to separate criteria.
+            </summary>
+            <remarks>
+            Note that the Windows identity will be disposed shortly after this function has returned
+            </remarks>
+        </member>
+        <member name="P:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions.OnCreateIdentity">
+            <summary>
+            This is fired when a valid WindowsIdentity has been found, and must return a ClaimsIdentity
+            
+            parameter 1: the newly created windows identiy
+            parameter 2: the options object of the middleware
+            parameter 3: the current request
+            </summary>
+        </member>
+        <member name="M:Pysco68.Owin.Authentication.Ntlm.NtlmAuthenticationOptions.#ctor">
+            <summary>
+            Creates an instance of Ntlm authentication options with default values.
+            </summary>
+        </member>
+    </members>
+</doc>
